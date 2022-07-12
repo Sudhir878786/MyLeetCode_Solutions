@@ -3,6 +3,78 @@
 using namespace std;
 
  // } Driver Code Ends
+/* For substring of S starting from index 0 find the minimum length of uncommon sequence between substring and every substring of T
+
+ 
+
+DP state 
+
+if matching character is not found then answer is 1
+
+if matching character is found then answer will be…
+
+dp[i][j] will denote length of minimum uncommon sequence of S of first i chars and T of first j chars
+
+dp[i][j] → S upto length i and T upto length j
+
+ 
+
+Let's suppose string is 
+
+S → upiu
+
+T → pipu
+
+ 
+
+S[0] ≠ T[0]
+
+so dp[1][1] = 1 … considering 1 based indexing
+
+ 
+
+S[0] ≠ T[1]
+
+S[0] ≠ T[0]
+
+dp[1][2] = 1
+
+ 
+
+S[0] ≠ T[2]
+
+S[0] ≠ T[1]
+
+S[0] ≠ T[0]
+
+dp[1][3] = 1
+
+ 
+
+S[0] == T[4]
+
+u
+
+pipu
+
+There is no uncommon subsequence possible…
+
+ 
+
+now what ??? 
+
+We have two choices for state dp[i][j]
+
+We have to exclude the ith character and check upto given index j
+
+i.e. dp[i][j] can be equal to dp[i-1][j]…
+
+ 
+
+But suppose the first matching character was found at kth index so we are sure that length of uncommon sequence from k to j and string s of length i must be 1 right…
+
+i.e. dp[i][j] can be equal to dp[i-1][k-1]+1*/
+
 class Solution {
   public:
   // code here
