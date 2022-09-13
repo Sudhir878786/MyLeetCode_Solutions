@@ -5,7 +5,9 @@ public:
         for(int i=0;i<data.size();i++) {
             string s = bitset<8> (data[i]).to_string();
             v.push_back(s ); //binary representation
+            cout<<v[i]<<" ";
         }
+        
         int count = 0;
         for(auto s: v) {
             if(count==0) {
