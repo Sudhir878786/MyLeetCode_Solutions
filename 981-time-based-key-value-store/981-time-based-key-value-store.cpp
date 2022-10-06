@@ -1,21 +1,20 @@
 class TimeMap {
 public:
-    unordered_map<string,unordered_map<int,string>> mp;
+    unordered_map<string,unordered_map<int,string>>mp;
     
     TimeMap() {
         
     }
     
     void set(string key, string value, int timestamp) {
-        mp[key][timestamp]= value;
+        mp[key][timestamp]=value;
     }
     
     string get(string key, int timestamp) {
         if(!mp.count(key)){
             return "";
         }
-        for(int i=timestamp;i>=1;i--)
-        {
+        for(int i=timestamp;i>=1;i--){
             if(mp[key].count(i)){
                 return mp[key][i];
             }
