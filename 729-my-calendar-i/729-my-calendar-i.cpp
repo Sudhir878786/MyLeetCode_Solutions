@@ -1,18 +1,29 @@
 class MyCalendar {
 public:
-    vector<vector<int>>a;
+    vector<vector<int>>ans;
     MyCalendar() {
         
     }
     
     bool book(int start, int end) {
-        for(auto &i:a)
-            if(i[0]<end and start<i[1])
+        for(auto &x:ans){
+            int a=x[0];
+            int b=x[1];
+            if(a<end and b>start){
                 return false;
-        vector<int>ans;
-        ans.emplace_back(start);
-        ans.emplace_back(end);
-        a.emplace_back(ans);
+            }
+            
+        }
+        vector<int>t;
+        t.push_back(start);
+        t.push_back(end);
+        ans.push_back(t);
         return true;
     }
 };
+
+/**
+ * Your MyCalendar object will be instantiated and called as such:
+ * MyCalendar* obj = new MyCalendar();
+ * bool param_1 = obj->book(start,end);
+ */
