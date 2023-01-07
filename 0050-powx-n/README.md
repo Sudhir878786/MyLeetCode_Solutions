@@ -1,32 +1,53 @@
-<h2><a href="https://leetcode.com/problems/powx-n/">50. Pow(x, n)</a></h2><h3>Medium</h3><hr><div><p>Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(x, n)</a>, which calculates <code>x</code> raised to the power <code>n</code> (i.e., <code>x<sup>n</sup></code>).</p>
+# [50\. Pow(x, n)](https://leetcode.com/problems/powx-n/submissions/)
 
-<p>&nbsp;</p>
-<p><strong class="example">Example 1:</strong></p>
+## Description
 
-<pre><strong>Input:</strong> x = 2.00000, n = 10
-<strong>Output:</strong> 1024.00000
-</pre>
+Difficulty: **Medium**  
 
-<p><strong class="example">Example 2:</strong></p>
+Related Topics: [Math](https://leetcode.com/tag/math/), [Recursion](https://leetcode.com/tag/recursion/)
 
-<pre><strong>Input:</strong> x = 2.10000, n = 3
-<strong>Output:</strong> 9.26100
-</pre>
 
-<p><strong class="example">Example 3:</strong></p>
+Implement [pow(x, n)](http://www.cplusplus.com/reference/valarray/pow/), which calculates `x` raised to the power `n` (i.e., x<sup>n</sup>).
 
-<pre><strong>Input:</strong> x = 2.00000, n = -2
-<strong>Output:</strong> 0.25000
-<strong>Explanation:</strong> 2<sup>-2</sup> = 1/2<sup>2</sup> = 1/4 = 0.25
-</pre>
+**Example 1:**
 
-<p>&nbsp;</p>
-<p><strong>Constraints:</strong></p>
+```
+Input: x = 2.00000, n = 10
+Output: 1024.00000
+```
 
-<ul>
-	<li><code>-100.0 &lt; x &lt; 100.0</code></li>
-	<li><code>-2<sup>31</sup> &lt;= n &lt;= 2<sup>31</sup>-1</code></li>
-	<li><code>n</code> is an integer.</li>
-	<li><code>-10<sup>4</sup> &lt;= x<sup>n</sup> &lt;= 10<sup>4</sup></code></li>
-</ul>
-</div>
+**Example 2:**
+
+```
+Input: x = 2.10000, n = 3
+Output: 9.26100
+```
+
+**Example 3:**
+
+```
+Input: x = 2.00000, n = -2
+Output: 0.25000
+Explanation: 2-2 = 1/22 = 1/4 = 0.25
+```
+
+**Constraints:**
+
+*   `-100.0 < x < 100.0`
+*   -2<sup>31</sup> <= n <= 2<sup>31</sup>-1
+*   `n` is an integer.
+*   -10<sup>4</sup> <= x<sup>n</sup> <= 10<sup>4</sup>
+
+
+## Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    double myPow(double x, int n) {
+        return (double)(pow(x,n));
+    }
+};
+```
