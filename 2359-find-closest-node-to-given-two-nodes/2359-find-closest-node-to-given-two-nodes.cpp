@@ -20,10 +20,10 @@ class Solution
                         minDist = max(dist1[i], dist2[i]);
                         minNode = i;
                     }
-                    else if (max(dist1[i], dist2[i]) == minDist && i < minNode)
-                    {
-                        minNode = i;
-                    }
+                    // else if (max(dist1[i], dist2[i]) == minDist && i < minNode)
+                    // {
+                    //     minNode = i;
+                    // }
                 }
             }
             return minNode;
