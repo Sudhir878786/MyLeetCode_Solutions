@@ -16,7 +16,7 @@ public:
         {
            	// if the current node is not having either a left or a right then we are 
            	// done with one root to leaf path so we push it into the answer
-            if (!root->left && !root->right)
+            if (root->left==NULL && root->right==NULL)
             {
                 ans.push_back(s);
                 return;
