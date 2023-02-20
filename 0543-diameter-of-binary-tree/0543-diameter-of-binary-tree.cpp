@@ -12,17 +12,19 @@
 class Solution {
 public:
     int ans=0;
-  // basically we need to itereate through the depth of the tree and cal corresponding diametere = left+right+1;
-    int solve(TreeNode*inorder,int d)
-{
-	if(!inorder)return 0;
-	int left=solve(inorder->left,d);
-	int right=solve(inorder->right,d);
-	ans=max(ans,left+right);
-	return max(left,right)+1;
+    int height(TreeNode*root){
+        if(!root)return 0;
+        return (max(height(root->left),height(root->right))+1);
     }
-    int diameterOfBinaryTree(TreeNode* inorder) {
-         solve(inorder,ans);
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root)return 0;
+        int a=height(root->left);
+        int b=height(root->right);
+        if(a+b>ans){
+            ans=a+b;
+        }
+        diameterOfBinaryTree(root->left);
+        diameterOfBinaryTree(root->right);
         return ans;
     }
 };
