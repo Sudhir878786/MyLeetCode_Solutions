@@ -21,7 +21,7 @@ class Solution
         TreeNode *ans = new TreeNode(preorder[rootidx++]);
         if (start == end) return ans;
         int mid = mp[ans->val];
-        cout<<mid<<endl;
+        // cout<<mid<<endl;
 
         ans->left = func(preorder, inorder, start, mid - 1);
         ans->right = func(preorder, inorder, mid + 1, end);
