@@ -12,7 +12,7 @@
 class Solution {
 public:
     int ans=0;
-
+  // basically we need to itereate through the depth of the tree and cal corresponding diametere = left+right+1;
     int solve(TreeNode*inorder,int d)
 {
 	if(!inorder)return 0;
