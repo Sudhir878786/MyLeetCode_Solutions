@@ -11,18 +11,19 @@
  */
 class Solution {
 public:
-    TreeNode* searchBST(TreeNode* root, int val) {
-        if(!root)return NULL;
-       while(root and root->val!=val){
-           if(root->val>val){
-               root=root->left;
-           }
-          
-           else     root=root->right;
-           
-       }
-        return root;
+    TreeNode* searchBST(TreeNode* node, int val) {
         
+        if(!node)return NULL;
+        while(node and node->val!=val){
+            if(node->val>val){
+                node=node->left;
+            }
+            else{
+                node=node->right;
+            }            
+        }
+      
+        return node;
         
     }
 };
