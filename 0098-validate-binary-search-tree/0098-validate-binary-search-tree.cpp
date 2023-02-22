@@ -3,7 +3,7 @@ public:
     bool isValidBST(TreeNode* root) {
         return valid(root, LONG_MIN, LONG_MAX);
     }
-private:
+
     bool valid(TreeNode* root, long min, long max) {
         if (!root) {
             return true;
