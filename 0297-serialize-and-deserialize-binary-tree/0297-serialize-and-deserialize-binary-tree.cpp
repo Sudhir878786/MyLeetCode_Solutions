@@ -8,13 +8,13 @@ public:
 	
     TreeNode* deserialize(string data) 
     {
-        istringstream ss(data);
+        stringstream ss(data);
         return buildTree(ss);
     }
     
 
     
-    TreeNode* buildTree(istringstream& ss)
+    TreeNode* buildTree(stringstream& ss)
     {
         string s;
         ss >> s;
