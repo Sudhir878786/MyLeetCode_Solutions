@@ -12,23 +12,19 @@
 class Solution {
 public:
     void flatten(TreeNode* root) {
-        // so  first we strore the right of the root in temp var  
-        // we will move to the right most leaf by increasing a node variable 
-        // then node of right will be concatenated with the temp;
-        
-        if(!root)return ;
+        if(!root)return;
         while(root){
-            TreeNode*temp=root->right;
+            TreeNode*temp= root->right;
             root->right=root->left;
             root->left=NULL;
-            TreeNode* node=root;
-            while(node->right){
-                node=node->right;
-            }
-            node->right=temp;
-            
-            
+        
+        TreeNode*cur=root;
+        while(cur->right){
+            cur=cur->right;
+        }
+            cur->right=temp;
             root=root->right;
         }
+            
     }
 };
