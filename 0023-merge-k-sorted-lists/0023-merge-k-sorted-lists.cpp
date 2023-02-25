@@ -57,10 +57,11 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.empty())return NULL;
         int  n=lists.size();
-        while(lists.size()>1){
+        while(n>1){
             lists.push_back(merge(lists[0],lists[1]));
             lists.erase(lists.begin());
             lists.erase(lists.begin());
+            n--;
         }
         return lists.front();
     }
