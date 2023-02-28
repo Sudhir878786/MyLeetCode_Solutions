@@ -11,30 +11,26 @@
  */
 class Solution {
 public:
-   string inorder(TreeNode* root, unordered_map<string, int>& mp, vector<TreeNode*>& res)                
-{
-        if(!root)
-         return "";
-
-        string str = "(";
-        str += inorder(root -> left, mp, res);
-        str += to_string(root -> val);
-        str += inorder(root -> right, mp, res);
-        str += ")";
-
-        if(mp[str] == 1)
-            res.push_back(root);
-    
-        mp[str]++;
-
-        return str;
-}
-    
-vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) 
-{
-	unordered_map<string, int> mp;
-	vector<TreeNode*> res;
-	inorder(root, mp, res);
-	return res;
-}	
+    vector<TreeNode*>ans;
+    string func(TreeNode*root,unordered_map<string,int>&mp)
+    {
+        if(!root)return "";
+        string s= "(";
+        s+=func(root->left,mp);
+        s+=to_string(root->val);
+        s+=func(root->right,mp);
+        s+=")";
+       
+        if(mp[s]==1){
+            ans.push_back(root);
+        }
+         mp[s]++;
+        return s;
+    }
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        unordered_map<string,int>mp;
+        if(!root)return ans;
+        func(root,mp);
+        return ans;
+    }
 };
