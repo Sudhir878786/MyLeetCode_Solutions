@@ -1,5 +1,7 @@
 class Solution {
-public:
+public:// the logic is same as longest increasing subsequence
+    
+    //just have to replce  nums[i]%nums[prev]==0 
     vector<int> largestDivisibleSubset(vector<int>& nums) {
         vector<int>ans;
         sort(nums.begin(),nums.end());
