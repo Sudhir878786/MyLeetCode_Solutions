@@ -1,20 +1,23 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>& image, int sr, int sc, int color,int orgcolor)
+    void dfs(vector<vector<int>>& grid, int sr, int sc,int n,int m, int color,int neww)
     {
-        if(sr<0 || sc<0 || sr>=image.size() || sc>=image[0].size() || image[sr][sc]!=orgcolor )return;
-        image[sr][sc]=color;
-        dfs(image,sr-1,sc,color,orgcolor);
-        dfs(image,sr+1,sc,color,orgcolor);
-        dfs(image,sr,sc-1,color,orgcolor);
-        dfs(image,sr,sc+1,color,orgcolor);
-    }
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        int n=image.size();
-        int m=image[0].size();
-        if(image[sr][sc]!=color){
-            dfs(image,sr,sc,color,image[sr][sc]);
+        if(sr>=n || sc>=m || sr<0 || sc<0 || grid[sr][sc]!=neww){
+            return ;
         }
-        return image;
+        grid[sr][sc]=color;
+        dfs(grid,sr+1,sc,n,m,color,neww);
+        dfs(grid,sr-1,sc,n,m,color,neww);
+        dfs(grid,sr,sc+1,n,m,color,neww);
+        dfs(grid,sr,sc-1,n,m,color,neww);
+    }
+        
+    vector<vector<int>> floodFill(vector<vector<int>>& grid, int sr, int sc, int color) {
+        int n=grid.size();
+        int m=grid[0].size();
+        if(grid[sr][sc]!=color){
+            dfs(grid,sr,sc,n,m,color,grid[sr][sc]);
+        }
+        return grid;
     }
 };
