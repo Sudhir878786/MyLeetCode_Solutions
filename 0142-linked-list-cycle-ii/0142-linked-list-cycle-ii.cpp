@@ -9,16 +9,16 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-       unordered_map<ListNode*,bool>vis;
-        ListNode* cur=head;
+        unordered_map<ListNode*,bool>mp;
+        ListNode*cur=head;
         while(cur){
-            if(vis[cur]==true){
+            if(mp[cur]!=false){
                 return cur;
             }
-            vis[cur]=true;
+            mp[cur]=true;
+            
             cur=cur->next;
         }
-        return nullptr;
-        
+        return cur;
     }
 };
