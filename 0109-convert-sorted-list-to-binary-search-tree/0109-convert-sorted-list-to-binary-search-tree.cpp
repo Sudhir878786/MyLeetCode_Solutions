@@ -23,24 +23,18 @@ class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         if(!head)return NULL;
-        if(!head->next)
-        {
-            return new TreeNode(head->val);
-        }
-         ListNode *slow=head,*fast=head->next;
-        while(fast->next&&fast->next->next)
-        {
+        if(!head->next) return new TreeNode(head->val);
+        ListNode*slow=head;
+        ListNode*fast=head->next;
+        while(fast->next and fast->next->next){
             slow=slow->next;
             fast=fast->next->next;
-            
         }
-        ListNode *mid=slow->next;
+        ListNode*mid=slow->next;
         slow->next=NULL;
-        
-        TreeNode *root=new TreeNode(mid->val);
-        root->left=sortedListToBST(head);
-        root->right=sortedListToBST(mid->next);
-        return root;
-        
+        TreeNode*ans= new TreeNode(mid->val);
+        ans->left=sortedListToBST(head);
+        ans->right=sortedListToBST(mid->next);
+        return ans;
     }
 };
