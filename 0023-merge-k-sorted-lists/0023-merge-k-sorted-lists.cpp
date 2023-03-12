@@ -12,7 +12,7 @@ class Solution {
 public:
     ListNode*merge(ListNode*l1,ListNode*l2)
     {
-        
+         
          ListNode *ptr = new ListNode(0);
         ListNode *curr = ptr;
         if(l1==NULL)return l2;
@@ -50,19 +50,17 @@ public:
         }
         
         return ptr->next;
-        
-       
-        
     }
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if(lists.empty())return NULL;
-        int  n=lists.size();
+        int n=lists.size();
+       
         while(n>1){
             lists.push_back(merge(lists[0],lists[1]));
             lists.erase(lists.begin());
             lists.erase(lists.begin());
             n--;
         }
-        return lists.front();
+        return lists[0];
     }
 };
