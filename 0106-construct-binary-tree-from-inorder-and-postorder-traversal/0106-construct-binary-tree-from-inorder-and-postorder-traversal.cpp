@@ -1,27 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
- unordered_map<int,int>m;
-    TreeNode* solve(vector<int>& inorder,vector<int>& postorder,int start,int end,int &post){
-        if(start>end) return NULL;
-         int inorderIndex = m[postorder[post]];
-
-        TreeNode* root = new TreeNode(postorder[post--]);    
+    unordered_map<int,int>mp;
+    TreeNode* func(vector<int>& inorder, vector<int>& postorder,int start,int end,int& cur)
+    {
+        if(start>end)return NULL;
+        int ind=mp[postorder[cur]];
+        TreeNode*ans=new TreeNode(postorder[cur--]);
+        ans->right=func(inorder,postorder,ind+1,end,cur);
+        ans->left=func(inorder,postorder,start,ind-1,cur);
         
-        //(postIndex)--;
-      root->right=solve(inorder,postorder,inorderIndex+1,end,post);
-        root->left=solve(inorder,postorder,start,inorderIndex-1,post);
-        
-        return root;
+        return ans;
     }
-    
-    
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-
         for(int i=0;i<inorder.size();i++){
-           m[inorder[i]] = i;
-            
+            mp[inorder[i]]=i;
         }
-        int post=postorder.size()-1;
-        return solve(inorder,postorder,0,postorder.size()-1,post);
+        int n=postorder.size()-1;
+        return func(inorder,postorder,0,n,n);
     }
 };
