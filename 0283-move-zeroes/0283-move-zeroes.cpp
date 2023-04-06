@@ -8,7 +8,6 @@ public:
     for (int i = 0; i < n; i++) {
         numZeroes += (nums[i] == 0);
     }
-
     // Make all the non-zero elements retain their original order.
     vector<int> ans;
     for (int i = 0; i < n; i++) {
