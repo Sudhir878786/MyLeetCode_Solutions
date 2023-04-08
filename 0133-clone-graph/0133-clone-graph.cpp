@@ -12,7 +12,7 @@ public:
         val = _val;
         neighbors = vector<Node*>();
     }
-    Node(int _val, vector<Node*> _neighbors) {
+    Node(int _val, vector<Node*>_neighbors) {
         val = _val;
         neighbors = _neighbors;
     }
@@ -21,16 +21,15 @@ public:
 
 class Solution {
 public:
-    	unordered_map<Node*,Node*>v;
-
+    unordered_map<Node*,Node*>mp;
     Node* cloneGraph(Node* node) {
-        if(!node) return NULL;
-    if(!v.count(node)){
-        v[node] = new Node(node->val, {});
-        for(auto &i : node->neighbors){
-            v[node]->neighbors.push_back(cloneGraph(i));
+        if(!node)return NULL;
+        if(!mp.count(node)){
+            mp[node]=new Node(node->val,{});
+            for(auto it:node->neighbors){
+               mp[node]->neighbors.push_back(cloneGraph(it));
+            }
         }
-    }    
-    return v[node];
+        return mp[node];
     }
 };
