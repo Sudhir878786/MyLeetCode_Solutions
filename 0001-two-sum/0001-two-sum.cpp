@@ -8,6 +8,7 @@ public:
                 ans.push_back(mp[target-nums[i]]);
                 ans.push_back(i);
             }
+            
             mp[nums[i]]=i;
         }
         return ans;
