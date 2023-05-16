@@ -15,6 +15,7 @@ public:
         while(cur and cur->next){
             swap(cur->val,cur->next->val);
             cur=cur->next->next;
+            
         }
         return head;
     }
