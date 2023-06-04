@@ -9,16 +9,14 @@ public:
             }
         }
     }
-    int findCircleNum(vector<vector<int>>& adj) {
-        int n=adj.size();
-        int ans=0;
+    int findCircleNum(vector<vector<int>>& nums) {
+        int n=nums.size();
         vector<int>vis(n,0);
-        
+        int ans=0;
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 ans++;
-                dfs(i,adj,vis);
-                
+                dfs(i,nums,vis);
             }
         }
         return ans;
