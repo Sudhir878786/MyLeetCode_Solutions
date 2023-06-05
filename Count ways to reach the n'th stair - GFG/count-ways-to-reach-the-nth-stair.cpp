@@ -10,24 +10,14 @@ class Solution
     int countWays(int n)
     {
         // your code here
-        if(n<0)return 1;
-        vector<int>arr(n+1,0);
-                int m=1e9+7;
-            arr[0]=1;
-
-        arr[1]=1;
-
-        arr[2]=2;
-
-        for(int i=3;i<=n;i++){
-
-               //applying given condition
-
-            arr[i]=(arr[i-1]%m + arr[i-2]%m)%m; 
-
-        }
-
-        return arr[n];
+       int dp[100001];
+       dp[1]=1;
+       dp[2]=2;
+       dp[3]=3;
+       for(int i=4;i<=n;i++){
+           dp[i]=(dp[i-1]+dp[i-2])%1000000007;
+       }
+       return dp[n];
 
     }
 };
