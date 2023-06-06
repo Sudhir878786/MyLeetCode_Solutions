@@ -1,7 +1,6 @@
-class Solution
-{
-    public:
-        int ans = 0;
+class Solution {
+public:
+      int ans = 0;
     int dfs(int i, int j, vector<vector < int>> &grid, int n, int m, vector< vector< int>> &dp)
 
     {
@@ -16,18 +15,13 @@ class Solution
         ans = a + b;
         return dp[i][j] = ans;
     }
-
-    int uniquePathsWithObstacles(vector<vector < int>> &grid)
-    {
-        int n = grid.size();
-        int ans = 0;
-        int m = grid[0].size();
-        vector<vector < int>> dp(n + 1, vector<int> (m + 1, -1));
-        if (grid[0][0] != 1)
-        {
+    int uniquePathsWithObstacles(vector<vector<int>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        if(grid[0][0]!=1){
             return dfs(0, 0, grid, n, m, dp);
         }
-
         return 0;
     }
 };
