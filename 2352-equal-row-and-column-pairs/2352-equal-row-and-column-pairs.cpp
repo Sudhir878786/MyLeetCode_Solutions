@@ -4,11 +4,11 @@ public:
     int equalPairs(vector<vector<int>>& grid) {
         vector<vector<int>> b;
         
-        for(int j=0;j<grid[0].size();j++){
+        for(int i=0;i<grid.size();i++){
               vector<int> a;  
-              for(int i=0;i<grid.size();i++){
+              for(int j=0;j<grid[0].size();j++){
                   
-                  a.push_back(grid[i][j]);
+                  a.push_back(grid[j][i]);
                   b.push_back(a);
               }
         }
