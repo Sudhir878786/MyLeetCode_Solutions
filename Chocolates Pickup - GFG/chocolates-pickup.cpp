@@ -6,7 +6,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  int maxChocoUtil(int i, int j1, int j2, int n, int m, vector < vector < int >> 
+   int func(int i, int j1, int j2, int n, int m, vector < vector < int >> 
 & grid, vector < vector < vector < int >>> & dp) {
   if (j1 < 0 || j1 >= m || j2 < 0 || j2 >= m)
     return -1e9;
@@ -26,9 +26,9 @@ class Solution {
     for (int dj = -1; dj <= 1; dj++) {
       int ans;
       if (j1 == j2)
-        ans = grid[i][j1] + maxChocoUtil(i + 1, j1 + di, j2 + dj, n, m, grid, dp);
+        ans = grid[i][j1] + func(i + 1, j1 + di, j2 + dj, n, m, grid, dp);
       else
-        ans = grid[i][j1] + grid[i][j2] + maxChocoUtil(i + 1, j1 + di, j2 + dj, n,
+        ans = grid[i][j1] + grid[i][j2] + func(i + 1, j1 + di, j2 + dj, n,
         m, grid, dp);
       maxi = max(maxi, ans);
     }
@@ -36,13 +36,11 @@ class Solution {
   return dp[i][j1][j2] = maxi;
 }
 
-int solve(int n, int m, vector < vector < int >> & grid) {
-
-  vector < vector < vector < int >>> dp(n, vector < vector < int >> (m, vector < int
-  > (m, -1)));
-
-  return maxChocoUtil(0, 0, m - 1, n, m, grid, dp);
-}
+    int solve(int n, int m, vector<vector<int>>& grid) {
+        // code here
+        vector<vector<vector<int>>>dp(n,vector<vector<int>>(m,vector<int>(m,-1)));
+        return func(0,0,m-1,n,m,grid,dp);
+    }
 };
 
 //{ Driver Code Starts.
