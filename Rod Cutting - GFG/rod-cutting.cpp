@@ -10,27 +10,15 @@ using namespace std;
 
 class Solution{
   public:
-    int func(int n, int len,int price[],vector<vector<int>>&dp)
-    {
-        if(n==0){
-            return len*price[0];
-        }
-        
-        // if(n<0)return 1e9;
-        if(dp[n][len]!=-1)return dp[n][len];
-        int dpic=func(n-1,len,price,dp);
-        int p=INT_MIN;
-        int l=n+1;
-        if(l<=len){
-            p=price[n]+func(n,len-l,price,dp);
-        }
-        return dp[n][len]= max(p,dpic);
-        
-    }
     int cutRod(int price[], int n) {
         //code here
-        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
-        return func(n-1,n,price,dp);
+        vector<int>dp(n+1,0);
+        for(int i=1;i<=n;i++){
+            for(int j=0;j<i;j++){
+                dp[i]=max(dp[i],dp[j]+price[i-j-1]);
+            }
+        }
+        return dp[n];
     }
 };
 
