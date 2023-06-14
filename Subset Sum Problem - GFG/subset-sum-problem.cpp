@@ -9,22 +9,25 @@ using namespace std;
 
 class Solution{   
 public:
-    bool func(int n,int sum,vector<int>&arr,vector<vector<int>>&dp)
+    int func(int i,vector<int>&arr,int sum,vector<vector<int>>&dp)
     {
-        if(sum==0)return 1;
-        if(n==0)return arr[0]==sum;
-        if(dp[n][sum]!=-1)return dp[n][sum];
-        int nott=func(n-1,sum,arr,dp);
-        int take=0;
-        if(sum>=arr[n]){
-            take=func(n-1,sum-arr[n],arr,dp);
+        if(i==arr.size()){
+            if(sum==0)return 1;
+            else return 0;
         }
-        return dp[n][sum]= take||nott;
+        if(dp[i][sum]!=-1)return dp[i][sum];
+        int pick=0,notpick=0;
+        if(arr[i]<=sum){
+            pick=func(i+1,arr,sum-arr[i],dp);
+        }
+        notpick=func(i+1,arr,sum,dp);
+        return dp[i][sum]= pick+notpick;
     }
     bool isSubsetSum(vector<int>arr, int sum){
         // code here 
-        vector<vector<int>>dp(arr.size()+1,vector<int>(sum+1,-1));
-        return func(arr.size()-1,sum,arr,dp);
+        int n=arr.size();
+        vector<vector<int>>dp(n+1,vector<int>(sum+1,-1));
+        return func(0,arr,sum,dp);
     }
 };
 
