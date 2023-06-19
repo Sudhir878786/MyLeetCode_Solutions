@@ -6,7 +6,7 @@ using namespace std;
 class Solution{
 
   public:
-  bool func(int n,int sum,int arr[],vector<vector<int>>&dp){
+    bool func(int n,int sum,int arr[],vector<vector<int>>&dp){
       if(n==0)return dp[n][sum]=arr[n]==sum;
       if(sum==0) return dp[n][sum]=true;
       if(dp[n][sum]!=-1){
