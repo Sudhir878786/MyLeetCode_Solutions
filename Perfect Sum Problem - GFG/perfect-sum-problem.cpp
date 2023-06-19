@@ -11,6 +11,7 @@ class Solution{
 	int solve(int i, int sum, int n, int arr[], vector<vector<int>>&dp){
 	    if(i == n){
 	        if(sum == 0) return 1;
+	        
 	        return 0;
 	    }
 	    if(dp[i][sum] != -1) return (dp[i][sum])%mod;
