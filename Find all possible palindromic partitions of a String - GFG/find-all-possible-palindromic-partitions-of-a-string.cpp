@@ -24,7 +24,7 @@ class Solution {
         
         for(int i=ind;i<S.length();i++){
             if(ispal(S,ind,i)){
-                temp.push_back(S.substr(ind,i+1));
+                temp.push_back(S.substr(ind,i+1-ind));
                 solve(S,i+1,temp,ans);
                 temp.pop_back();
             }
