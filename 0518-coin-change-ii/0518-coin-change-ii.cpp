@@ -1,27 +1,24 @@
 class Solution {
 public:
-    int func(int n,  int sum,vector<int>&nums, vector<vector<int>>&dp)
+    int func(int i,vector<int>&coins,int amount,vector<vector<int>>&dp)
     {
-        if(n==0)
-        {
-        return (sum%nums[0]==0);
-            // else return -1;
-            
+        if(i==0){
+            return  (amount%coins[0]==0);
         }
-        if(dp[n][sum]!=-1)return dp[n][sum];
-        int nott=0+func(n-1,sum,nums,dp);
+        if(dp[i][amount]!=-1){
+            return dp[i][amount];
+        }
+        int nott=0+func(i-1,coins,amount,dp);
         int take=0;
-        // cout<<nott<<endl;
-        // cout<<"take--"<<endl;
-        if(sum>=nums[n]){
-            take=func(n,sum-nums[n],nums,dp);
-            // cout<<take<<endl;
+        if(coins[i]<=amount){
+            take=func(i,coins,amount-coins[i],dp);
         }
-        return dp[n][sum]=take+nott;
+        return dp[i][amount] = take+nott;
     }
-    int change(int sum, vector<int>& coins) {
+    int change(int amount, vector<int>& coins) {
         int n=coins.size();
-        vector<vector<int>>dp(n+1,vector<int>(sum+1,-1));
-        return func(n-1,sum,coins,dp);
+        vector<vector<int>>dp(n+1,vector<int>(amount+1,-1));
+        return func(n-1,coins,amount,dp);
+        
     }
 };
