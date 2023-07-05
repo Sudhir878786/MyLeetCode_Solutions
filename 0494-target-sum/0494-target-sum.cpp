@@ -5,11 +5,10 @@ public:
         if(tar==0 and i==nums.size()){
             return 1;
         }
-        else if(i>=nums.size())return 0;
+        else if(i>=nums.size()) return 0;
         return func(i+1,nums,tar-nums[i])+func(i+1,nums,tar+nums[i]);
     }
     int findTargetSumWays(vector<int>& nums, int target) {
-        int n=nums.size();
         return func(0,nums,target);
     }
 };
