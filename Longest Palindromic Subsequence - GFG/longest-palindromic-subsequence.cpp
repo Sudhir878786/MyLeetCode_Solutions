@@ -12,11 +12,10 @@ class Solution{
   public:
     int longestPalinSubseq(string A) {
         //code here
-        int n=A.size();
-        vector<vector<int>>dp(n+1,vector<int>(n+1,0));
-        for(int i=1;i<=n;i++){
-            for(int j=1;j<=n;j++){
-                if(A[i-1]==A[n-j]){
+        vector<vector<int>>dp(A.size()+1,vector<int>(A.size()+1,0));
+        for(int i=1;i<=A.size();i++){
+            for(int j=1;j<=A.size();j++){
+                if(A[i-1]==A[A.size()-j]){
                     dp[i][j]=1+dp[i-1][j-1];
                 }
                 else{
@@ -24,7 +23,7 @@ class Solution{
                 }
             }
         }
-        return dp[n][n];
+        return dp[A.size()][A.size()];
     }
 };
 
