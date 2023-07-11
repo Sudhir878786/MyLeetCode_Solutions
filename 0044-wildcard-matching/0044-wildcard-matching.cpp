@@ -19,7 +19,7 @@ public:
         
         if(p[j-1]=='*')
         {
-            return dp[i][j] = f(i-1,j,s,p,dp) || f(i,j-1,s,p,dp) ? 1:0;
+            return dp[i][j] = f(i-1,j,s,p,dp) || f(i,j-1,s,p,dp) ;
             //Two cases
             //Consider * as len=0
             //Give one charcter to * and remain at *
