@@ -3,10 +3,10 @@ public:
     int maxEvents(vector<vector<int>>& e) {
         priority_queue<int,vector<int>,greater<int>>pq;
         sort(e.begin(),e.end());
-        for(int i=0;i<e.size();i++){
-            cout<<e[i][0]<<e[i][1]<<" ";
-        }
-        cout<<endl;
+        // for(int i=0;i<e.size();i++){
+        //     cout<<e[i][0]<<e[i][1]<<" ";
+        // }
+        // cout<<endl;
         int start=e[0][0];   // start date
         int end=INT_MIN; 
         for(int i=0;i<e.size();i++){
