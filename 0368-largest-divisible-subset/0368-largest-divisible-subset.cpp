@@ -1,37 +1,35 @@
 class Solution {
-public:// the logic is same as longest increasing subsequence
-    
-    //just have to replce  nums[i]%nums[prev]==0 
+public:
     vector<int> largestDivisibleSubset(vector<int>& nums) {
-        vector<int>ans;
+        int n=nums.size();
         sort(nums.begin(),nums.end());
-        vector<int>dp(nums.size()+1,1);
-        vector<int>hash(nums.size()+1);
-        for(int i=0;i<nums.size();i++){
+        vector<int>dp(n+1,1);
+        vector<int>hash(n+1,1);
+        for(int i=0;i<n;i++){
             hash[i]=i;
             for(int prev=0;prev<i;prev++){
-                if(nums[i]%nums[prev]==0 and 1+dp[prev]>dp[i])
+                if(nums[i]%nums[prev]==0 and dp[i]<1+dp[prev])
                 {
-                    dp[i]=1+dp[prev];
+                    dp[i]=dp[prev]+1;
                     hash[i]=prev;
-                    
                 }
             }
         }
-        int cur=-1;
+        int ans=-1;
         int last=-1;
-        for(int i=0;i<nums.size();i++){
-            if(dp[i]>cur){
-                cur=dp[i];
+        for(int i=0;i<n;i++){
+            if(ans<dp[i]){
+                ans=dp[i];
                 last=i;
             }
         }
-        ans.push_back(nums[last]);
+        vector<int>res;
+        res.push_back(nums[last]);
         while(hash[last]!=last){
             last=hash[last];
-            ans.push_back(nums[last]);
+            res.push_back(nums[last]);
         }
-        reverse(ans.begin(),ans.end());
-        return ans;
+        reverse(res.begin(),res.end());
+        return res;
     }
 };
