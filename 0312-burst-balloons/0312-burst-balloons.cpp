@@ -21,6 +21,7 @@ public:
         // int ans=/INT_MIN;
         for(int i=n-3;i>=0;i--){
             for(int j=i+2;j<n;j++){
+                
                 for(int k=i+1;k<j;k++){
                     dp[i][j]=max(dp[i][j],dp[i][k]+dp[k][j]+nums[j]*nums[i]*nums[k]);
                     // cout<<dp[i][j]<<endl;
