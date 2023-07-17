@@ -1,35 +1,29 @@
-class Solution
-{
-    public:	// count[i] store the total number of inc seq till i
-        int findNumberOfLIS(vector<int> &nums)
-        {
-            int n = nums.size();
-            vector<int> dp(n + 1, 1), count(n + 1, 1);
-            int ans = 0;
-            int maxi = 0;
-            for (int i = 0; i < n; i++)
-            {
-                for (int prev = 0; prev < i; prev++)
-                {
-                    if (nums[prev] < nums[i] and 1 + dp[prev] > dp[i])
-                    {
-                        dp[i] = dp[prev] + 1;
-                        count[i] = count[prev];
-                    }
-                    else if (nums[prev] < nums[i] and 1 + dp[prev] == dp[i])
-                    {
-                        count[i] += count[prev];
-                    }
+class Solution {
+public:
+    int findNumberOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        int ans=0;
+        vector<int>dp(n+1,1);
+        vector<int>count(n+1,1);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<i;j++){
+                if(nums[i]>nums[j] and 1+dp[j]>dp[i]){
+                    dp[i]=1+dp[j];
+                    count[i]=count[j];
                 }
-                maxi = max(maxi, dp[i]);
-            }
-            for (int i = 0; i < n; i++)
-            {
-                if (dp[i] == maxi)
-                {
-                    ans += count[i];
+                else if(nums[i]>nums[j] and 1+dp[j]==dp[i]){
+                    count[i]+=count[j];
                 }
             }
-            return ans;
+            ans=max(ans,dp[i]);
+        }
+        int res=0;
+        for(int i=0;i<n;i++){
+            if(dp[i]==ans){
+                res+=count[i];
+            }
+        }
+        return res;
+        
         }
 };
