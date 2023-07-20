@@ -21,6 +21,7 @@ public:
             if(ispal(ind,i,s)){
                 int temp=1+solve(i+1,s,dp);
                 cut=min(cut,temp);
+                
             }
         }
         return dp[ind]=cut;
