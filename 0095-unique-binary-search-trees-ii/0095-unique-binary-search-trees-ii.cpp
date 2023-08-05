@@ -11,20 +11,19 @@
  */
 class Solution {
 public:
-   
-    vector<TreeNode*> func(int s,int e)
+    vector<TreeNode*>func(int s,int e)
     {
-         vector<TreeNode*>ans;
+        vector<TreeNode*>ans;
         if(s>e){
-           ans.push_back(NULL);
+            ans.push_back(NULL);
             return ans;
         }
         for(int i=s;i<=e;i++){
-            auto left=func(s,i-1);
-            auto right=func(i+1,e);
-            for(auto l:left){
-                for(auto r:right){
-                    TreeNode*cur=new TreeNode(i,l,r);
+            auto l=func(s,i-1);
+            auto r=func(i+1,e);
+            for(auto left:l){
+                for(auto right:r){
+                    TreeNode*cur=new TreeNode(i,left,right);
                     ans.push_back(cur);
                 }
             }
@@ -35,6 +34,5 @@ public:
     vector<TreeNode*> generateTrees(int n) {
         if(n==0)return vector<TreeNode*>();
         return func(1,n);
-        
     }
 };
