@@ -6,7 +6,8 @@ public:
         int m=matrix[0].size();
         int left=0,right=m-1;
         int top=0,down=n-1;
-        while(left<=right and top<=down){
+        while(left<=right and top<=down)
+        {
             for(int i=left;i<=right;i++){
                 ans.push_back(matrix[top][i]);
             }
