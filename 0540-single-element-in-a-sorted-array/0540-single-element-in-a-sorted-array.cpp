@@ -11,11 +11,18 @@ public:
         //         ans=it->first;
         //     }
         // }
+        
+        
+        
+        
         // return ans;
         int ans=0;
         for(auto it:nums){
             ans^=it;
         }
         return ans;
+        
+        
+        
     }
 };
