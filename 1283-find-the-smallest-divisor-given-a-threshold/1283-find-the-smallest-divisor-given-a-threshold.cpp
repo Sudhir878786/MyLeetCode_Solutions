@@ -8,7 +8,7 @@ public:
             int mid=(l+r)/2;
             int cur=0;
             for(int i=0;i<n;i++){
-                cur+=((nums[i]-1)/mid)+1;
+                cur+=(long long)ceil(1.0*nums[i]/mid);
             }
             if(cur>th){
                 l=mid+1;
