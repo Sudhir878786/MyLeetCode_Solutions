@@ -21,6 +21,7 @@ public:
        int len=n/2;
         auto ans=head;
         while(len--){
+            
             ans=ans->next;
         }
         return ans;
