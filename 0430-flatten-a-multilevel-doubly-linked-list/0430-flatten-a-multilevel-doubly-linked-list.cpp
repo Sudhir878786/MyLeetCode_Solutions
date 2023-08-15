@@ -5,7 +5,7 @@ public:
     int val;
     Node* prev;
     Node* next;
-    Node* childch
+    Node* child;
 };
 */
 
@@ -15,25 +15,21 @@ public:
         Node*cur=head;
         stack<Node*>st;
         Node*tail=head;
-        // if(!head)return head;
         while(cur)
         {
             if(cur->child){
-                Node*child=cur->child;
-                if(cur->next!=NULL){
+                Node* cur_child=cur->child;
+                if(cur->next!=NULL)
+                {
                     st.push(cur->next);
-                    // cur=cur->next;
                     cur->next->prev=NULL;
-
                 }
-                cur->next=child;
-                child->prev=cur;
+                cur->next=cur_child;
+                cur_child->prev=cur;
                 cur->child=NULL;
-                
             }
             tail=cur;
             cur=cur->next;
-        
             
         }
         while(!st.empty()){
@@ -45,9 +41,7 @@ public:
                 tail=cur;
                 cur=cur->next;
             }
-            
         }
-        return  head;
-        
+        return head;
     }
 };
