@@ -10,37 +10,30 @@
  */
 class Solution {
 public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-       ListNode* current = head;
-    stack<ListNode*> s;
-    ListNode* newHead = nullptr;
-    ListNode* prevTail = nullptr;
-    while (current != nullptr) {
-        // Push k elements onto the stack
-        for (int i = 0; i < k && current != nullptr; i++) {
-            s.push(current);
-            current = current->next;
+    int len(ListNode*head)
+    {
+        ListNode*cur=head;
+        int ans=0;
+        while(cur){
+            ans++;
+            cur=cur->next;
         }
-        if (s.size() == k) {
-            // Pop k elements off the stack and update next pointers
-            ListNode* newTail = s.top();
-            s.pop();
-            ListNode* curr = newTail;
-            while (!s.empty()) {
-                curr->next = s.top();
-                s.pop();
-                curr = curr->next;
-            }
-            curr->next = current;
-            // Update newHead and prevTail pointers
-            if (newHead == nullptr) {
-                newHead = newTail;
-            } else {
-                prevTail->next = newTail;
-            }
-            prevTail = curr;
-        }
+        return ans;
     }
-    return newHead ;
-}
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode*cur=head;
+        ListNode* prev=NULL,*next=NULL;
+        auto n= len(head);
+        if(n<k){
+            return head;
+        }
+        for(int i=0;i<k;i++){
+            next=cur->next;
+            cur->next=prev;
+            prev=cur;
+            cur=next;
+        }
+        head->next=reverseKGroup(cur,k);
+        return prev;
+    }
 };
