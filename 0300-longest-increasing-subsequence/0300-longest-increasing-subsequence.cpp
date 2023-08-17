@@ -4,7 +4,7 @@ public:
         int n=nums.size();
         vector<int>cur;
         for(auto x:nums){
-            if(cur.empty()|| cur[cur.size()-1]<x){
+            if(cur.empty()|| cur.back()<x){
                 cur.push_back(x);
             }
             else{
