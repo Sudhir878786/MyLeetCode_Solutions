@@ -16,6 +16,7 @@ public:
     {
         if(start>end)return NULL;
         int ind=mp[postorder[cur]];
+        // cout<<ind<<endl;
         TreeNode*ans=new TreeNode(postorder[cur--]);
         ans->right=func(inorder,postorder,ind+1,end,cur);
         ans->left=func(inorder,postorder,start,ind-1,cur);
