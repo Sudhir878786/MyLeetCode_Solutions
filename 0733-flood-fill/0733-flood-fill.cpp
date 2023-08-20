@@ -1,23 +1,22 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>& grid, int sr, int sc,int n,int m, int color,int neww)
+    void func(vector<vector<int>>& image, int sr, int sc, int color,int n,int m,int prev)
     {
-        if(sr>=n || sc>=m || sr<0 || sc<0 || grid[sr][sc]!=neww){
-            return ;
+        if(sr<0 || sc< 0 || sr>=n || sc>=m || image[sr][sc]!=prev){
+            return;
         }
-        grid[sr][sc]=color;
-        dfs(grid,sr+1,sc,n,m,color,neww);
-        dfs(grid,sr-1,sc,n,m,color,neww);
-        dfs(grid,sr,sc+1,n,m,color,neww);
-        dfs(grid,sr,sc-1,n,m,color,neww);
+        image[sr][sc]=color;
+        func(image,sr+1,sc,color,n,m,prev);
+        func(image,sr-1,sc,color,n,m,prev);
+        func(image,sr,sc+1,color,n,m,prev);
+        func(image,sr,sc-1,color,n,m,prev);
     }
-        
-    vector<vector<int>> floodFill(vector<vector<int>>& grid, int sr, int sc, int color) {
-        int n=grid.size();
-        int m=grid[0].size();
-        if(grid[sr][sc]!=color){
-            dfs(grid,sr,sc,n,m,color,grid[sr][sc]);
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int n=image.size();
+        int m=image[0].size();
+        if(image[sr][sc]!=color){
+            func(image,sr,sc,color,n,m,image[sr][sc]);
         }
-        return grid;
+        return image;
     }
 };
