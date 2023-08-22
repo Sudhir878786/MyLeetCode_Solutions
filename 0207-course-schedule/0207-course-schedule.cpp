@@ -14,6 +14,7 @@ public:
         vis[id] = 2;
         return false;
     }
+    // so we will make a directed 
     bool canFinish(int n, vector<vector<int>>& p) {
         
         vector<int>adj[n];
@@ -21,7 +22,7 @@ public:
             int u=it[0];
             int v=it[1];
             adj[v].push_back(u);
-            //adj[v].push_back(u);
+           
             
         }
         vector<int>vis(n,0);
