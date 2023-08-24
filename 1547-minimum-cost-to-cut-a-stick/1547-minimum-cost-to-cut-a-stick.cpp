@@ -5,15 +5,18 @@ public:
         if(i>j){
             return 0;
         }
-        if(dp[i][j]!=-1){
+        if(dp[i][j]!=-1)
+        {
             return dp[i][j];
         }
         int ans=INT_MAX;
         for(int k=i;k<=j;k++){
-            int cur=cuts[j+1]-cuts[i-1]+func(i,k-1,cuts,dp)+func(k+1,j,cuts,dp);
-            ans=min(ans,cur);
+            int cost=cuts[j+1]-cuts[i-1]+func(i,k-1,cuts,dp)+func(k+1,j,cuts,dp);
+            ans=min(ans,cost);
         }
-        return dp[i][j]= ans;
+        return dp[i][j] = ans;
+        
+        
     }
     int minCost(int n, vector<int>& cuts) {
         int c=cuts.size();
