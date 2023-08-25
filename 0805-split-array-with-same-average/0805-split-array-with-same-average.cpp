@@ -1,6 +1,22 @@
 class Solution
 {
     public:
+    /*
+    By Applying Math We Get,
+Let we have,
+s1 = sum of first set
+s2 = sum of second set
+n1 = size of first set
+n2 = size of second set
+s = s1 + s1 = sum of nums
+n = n1 + n2 = size of nums
+we are given that average of first set = average of second set
+s1 / n1 = s2 / n2
+replace s2 by s - s1 and n2 by n - n1
+after solving the above equation
+we get,
+s1 = (s * n1) / n
+    */
 
        	// declare a map
 
