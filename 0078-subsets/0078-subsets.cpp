@@ -1,23 +1,20 @@
 class Solution {
 public:
-      vector<vector<int>> ans;
-    
-    void sub(vector<int> &nums, int i, vector<int> temp)
+    vector<vector<int>>ans;
+
+    void func(int ind,vector<int>&nums,vector<int>cur)
     {
-        if(i==nums.size())
-        {
-            ans.push_back(temp);
+        if(ind==nums.size()){
+           ans.push_back(cur);
             return;
         }
-        
-        sub(nums, i+1, temp);
-        temp.push_back(nums[i]);
-        sub(nums, i+1, temp);
+        func(ind+1,nums,cur);
+        cur.push_back(nums[ind]);
+        func(ind+1,nums,cur);
     }
-    
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<int> temp;       
-        sub(nums, 0, temp); // or sub(nums, 0, vector<int> {});
+        vector<int>cur;
+        func(0,nums,cur);
         return ans;
     }
 };
