@@ -1,34 +1,30 @@
 class Solution {
 public:
-    int f(int i,int j, string &s,string &p,vector<vector<int>> &dp)
+    bool func(int i,int j,string &s,string &p,vector<vector<int>>&dp)
     {
-        if(dp[i][j]!=-1) return dp[i][j];
-        if(i==0 && j==0) return dp[i][j]=true;
-        if(j==0 && i>0) return dp[i][j]=false;
-        if(i==0 && j>0)
-        {
-            while(j>0)
-            {
-                if(p[j-1]=='*') j--;
-                else return dp[i][j]=false;
+        if(j>=p.size()){
+            return i==s.size();
+        }
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        bool ans=0;
+        if(s[i]==p[j]){
+            ans|=func(i+1,j+1,s,p,dp);
+        }
+        else if(p[j]=='?'){
+            ans|=func(i+1,j+1,s,p,dp);
+        }
+        else if(p[j]=='*'){
+            ans|=func(i,j+1,s,p,dp);
+            for(int ind=i;ind<s.size();ind++){
+                ans|=func(ind+1,j+1,s,p,dp);
             }
-            return dp[i][j]=true;
         }
-        
-        if(s[i-1]==p[j-1] || p[j-1]=='?') return dp[i][j]=f(i-1,j-1,s,p,dp);
-        
-        if(p[j-1]=='*')
-        {
-            return dp[i][j] = f(i-1,j,s,p,dp) || f(i,j-1,s,p,dp) ;
-            
-        }
-        return dp[i][j]=false;
-        
+        return  dp[i][j]= ans;
     }
-    
     bool isMatch(string s, string p) {
-        int n=s.length(),m=p.length();
-        vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
-        return f(n,m,s,p,dp);
+        vector<vector<int>>dp(s.size()+10,vector<int>(p.size()+10,-1));
+        return func(0,0,s,p,dp);
     }
 };
