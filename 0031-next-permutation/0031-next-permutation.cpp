@@ -9,7 +9,7 @@ public:
                 break;
             }
         }
-        for(int i=n-1;i>=0;i--){
+        for(int i=n-1;i>=piv;i--){
             if(piv!=-1){
                 if(nums[i]>nums[piv]){
                     swap(nums[i],nums[piv]);
@@ -18,5 +18,6 @@ public:
             }
         }
         reverse(nums.begin()+piv+1,nums.end());
+            
     }
 };
