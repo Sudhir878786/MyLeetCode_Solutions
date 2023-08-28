@@ -1,39 +1,35 @@
 class Solution {
 public:
-    bool ispal(string&s)
+    vector<vector<string>>ans;
+    bool ispal(string &s)
     {
         int i=0,j=s.size()-1;
         while(i<j){
-            if(s[i]!=s[j])return 0;
-            i++;
-            j--;
+            if(s[i++]!=s[j--]){
+                return false;
+            }
         }
-        return 1;
+        return true;
     }
-    void func(int ind,vector<string>&cur,string &s,vector<vector<string>>&ans)
+    void func(string &s,int ind,vector<string>&cur)
     {
         if(ind==s.size()){
             ans.push_back(cur);
             return;
         }
-        string now="";
+        string temp="";
         for(int i=ind;i<s.size();i++){
-            now+=s[i];
-            if(ispal(now))
-            {
-                cur.push_back(now);
-                func(i+1,cur,s,ans);
+            temp+=s[i];
+            if(ispal(temp)){
+                cur.push_back(temp);
+                func(s,i+1,cur);
                 cur.pop_back();
             }
         }
-        return ;
     }
     vector<vector<string>> partition(string s) {
-        vector<vector<string>>ans;
         vector<string>cur;
-        func(0,cur,s,ans);
-        
-        
+        func(s,0,cur);
         return ans;
     }
 };
