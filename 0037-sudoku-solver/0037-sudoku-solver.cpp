@@ -1,27 +1,26 @@
 class Solution
 {
     public:
-        bool isval(vector<vector < char>> &board, int row, int col, char ch)
+        bool safe(vector<vector < char>> &board, int r, int c, char ch)
         {
             for (int i = 0; i < 9; i++)
             {
-                if (board[i][col] == ch)
+                if (board[i][c] == ch)
                 {
                     return false;
                 }
-                if (board[row][i] == ch)
+                if (board[r][i] == ch)
                 {
                     return false;
                 }
-                if (board[3 *(row / 3) + i / 3][3 *(col / 3) + i % 3] == ch)
+                if (board[3 *(r / 3) + i / 3][3 *(c / 3) + i % 3] == ch)
                 {
                     return false;
                 }
             }
             return true;
         }
-
-    bool solve(vector<vector < char>> &board)
+    bool func(vector<vector < char>> &board)
     {
         int n = board.size();
         int m = board[0].size();
@@ -33,10 +32,10 @@ class Solution
                 {
                     for (char ch = '1'; ch <= '9'; ch++)
                     {
-                        if (isval(board, i, j, ch))
+                        if (safe(board, i, j, ch))
                         {
                             board[i][j] = ch;
-                            if (solve(board))
+                            if (func(board))
                             {
                                 return true;
                             }
@@ -51,6 +50,6 @@ class Solution
     }
     void solveSudoku(vector<vector < char>> &board)
     {
-        solve(board);
+         func(board);
     }
 };
