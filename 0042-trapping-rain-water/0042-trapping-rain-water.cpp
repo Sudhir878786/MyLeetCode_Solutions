@@ -9,7 +9,7 @@ public:
         right[n-1]=height[n-1];
         for(int i=1;i<n;i++){
             left[i]=max(left[i-1],height[i]);
-            cout<<left[i]<<" ";
+            // cout<<left[i]<<" ";
         }
         cout<<endl;
         for(int j=n-2;j>=0;j--){
