@@ -1,26 +1,31 @@
 class Solution
 {
     public:
-        bool wordBreak(string s, vector<string> &wordDict)
+        bool func(string &s, vector<string> &word, int ind, set<string> &st, vector< int > &dp)
         {
-            set<string> dict(wordDict.begin(), wordDict.end());
-            vector<int> dp(s.length(), -1);
-            return f(0, s, dict, dp);
-        }
-
-    bool f(int ind, string &s, set<string> &dict, vector<int> &dp)
-    {
-        if (ind == s.length()) return true;
-        if (dp[ind] != -1) return dp[ind];
-
-        for (int i = ind; i < s.length(); i++)
-        {
-            string cur = s.substr(ind, i - ind + 1);
-            if (dict.find(cur) != dict.end() && f(i + 1, s, dict, dp))
+            if (ind == s.size())
             {
-                return dp[ind] = true;
+                return true;
             }
+            if (dp[ind] != -1)
+            {
+                return dp[ind];
+            }
+
+            for (int i = ind; i < s.size(); i++)
+            {
+                string cur = s.substr(ind, i - ind + 1);
+                if (st.find(cur) != st.end() and func(s, word, i + 1, st, dp))
+                {
+                    return dp[ind] = true;
+                }
+            }
+            return dp[ind] = false;
         }
-        return dp[ind] = false;
+    bool wordBreak(string s, vector<string> &wordDict)
+    {
+        set<string> st(wordDict.begin(), wordDict.end());
+        vector<int> dp(s.size() + 1, -1);
+        return func(s, wordDict, 0, st, dp);
     }
 };
